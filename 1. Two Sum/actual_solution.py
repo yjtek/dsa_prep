@@ -31,19 +31,13 @@ Only one valid answer exists.
 '''
 
 class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-
-        seen = {}
-        for i, v in enumerate(nums):
-            remaining = target - v
-            if remaining in seen:
-                return [seen[remaining], i]
-            seen[v] = i
-        return([])
+    def twoSum(self, nums: set, target: int):
+        nums_seen = set()
+        for num in nums:
+            if (target - num) in nums_seen:
+                return (target-num, num)
+            else:
+                nums_seen.add(num)
+        return None
 
         
