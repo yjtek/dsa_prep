@@ -8,5 +8,5 @@ def sum_two_digits(a, b) -> float:
 if __name__ == '__main__':
     a,b = input().split()
     a,b = int(a), int(b)
-    sum_two_digits(a,b)
+    print(sum_two_digits(a,b))
 
