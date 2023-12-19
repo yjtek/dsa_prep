@@ -15,10 +15,12 @@ def fib_sum_last_digit_eff(n, fib_store = {0:0,1:1,2:1}):
     if n <= 1:
         return n
     
-    if (n+2) not in fib_store.keys():
-        fib_store[n+2] = fib_eff(n+1) + fib_eff(n)
+    prev, curr = 0, 1
     
-    return int(str(fib_store[n+2] - 1)[-1])
+    for i in range(2, n+3):
+        prev, curr = curr, prev+curr
+
+    return int(str(curr)[-1]) - 1
 
 if __name__ == '__main__':
     n = int(input())

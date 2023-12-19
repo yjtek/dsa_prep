@@ -2,16 +2,14 @@ def fib_last_digit(n):
     if n <= 1:
         return n
 
-    n_minus_1 = 1
-    n_minus_2 = 0
+    curr = 1
+    prev = 0
     
-    for i in range(2, n+1):
-        # print('='*50)
-        # print(n_minus_1, n_minus_2)
-        n_minus_1, n_minus_2 =  (n_minus_1+n_minus_2) % 10, n_minus_1
-        # print(n_minus_1, n_minus_2)
-
-    return n_minus_1
+    for i in range(2,n+1):
+        # print(prev, curr, (prev+curr) % 10)
+        prev, curr = curr, (prev+curr) % 10
+    
+    return curr
 
 
 if __name__ == '__main__':
