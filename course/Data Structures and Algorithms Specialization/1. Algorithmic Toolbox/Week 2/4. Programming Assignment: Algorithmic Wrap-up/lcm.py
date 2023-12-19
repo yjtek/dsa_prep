@@ -1,3 +1,15 @@
+def gcd(a, b):
+    '''
+    Using result from Euclidean method 
+    '''
+    if a < b:
+        a,b = b,a
+
+    if a % b == 0:
+        return min(a,b)
+    else:
+        return gcd(b, a%b)
+
 def lcm(a, b):
     '''
     - LCM and GCD have an interesting relationship.
@@ -12,19 +24,8 @@ def lcm(a, b):
         - (a * b)/x = x * f_1 ... * f_n * g_1 * ... g_n
     '''
     x = gcd(a,b)
-    return int(a/x * b/x)
-
-def gcd(a, b):
-    '''
-    Using result from Euclidean method 
-    '''
-    if a < b:
-        a,b = b,a
-
-    if a % b == 0:
-        return min(a,b)
-    else:
-        return int(gcd(b, a%b))
+    
+    return int((a*b)/x)
 
 if __name__ == '__main__':
     a, b = map(int, input().split())

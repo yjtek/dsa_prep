@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(999_999)
+
 def fib_eff(n, fib_store={0:0, 1:1, 2:1}):
     if n in fib_store.keys():
         return fib_store.get(n)
@@ -14,12 +17,15 @@ def get_pisano_period(m):
 
 def fib_huge_mod(N, m, fib_store={0:0, 1:1, 2:1}):
     pisano_period = get_pisano_period(m)
-    
-    while N > 100:
-        N = N % pisano_period
+    # print(pisano_period)
 
+    while N > 100:
+        if N == (N % pisano_period):
+            break
+        N = N % pisano_period
+    
     if N in fib_store.keys():
-        return fib_store[N]
+        return fib_store[N] % m
     else:
         fib_store[N] = fib_eff(N-1, fib_store) + fib_eff(N-2, fib_store)
 
