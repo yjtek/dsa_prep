@@ -41,4 +41,4 @@ if __name__ == '__main__':
     input_n = int(input())
     elements = list(map(int, input().split()))
     assert len(elements) == input_n
-    print(inversions_naive(elements))
+    print(inversions_binary(elements)[1])
