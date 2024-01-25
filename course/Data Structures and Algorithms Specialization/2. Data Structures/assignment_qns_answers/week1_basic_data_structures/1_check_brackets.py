@@ -11,9 +11,11 @@ def find_mismatch(input_str: str) -> None | int:
     stack = []
     for index, char in enumerate(input_str):
         if char in ['{', '[', '(']:
-            stack.append(char)
+            stack.append((index,char))
         elif char in ['}', ']', ')']:
-            latest_open_bracket = stack.pop()
+            if len(stack) == 0:
+                return index+1
+            latest_open_bracket_index, latest_open_bracket = stack.pop()
             if latest_open_bracket == '{':
                 if char != '}':
                     return index+1
@@ -28,7 +30,7 @@ def find_mismatch(input_str: str) -> None | int:
     
     if len(stack) == 0:
         return "Success"
-    return len(input_str)
+    return stack[-1][0]+1
 
 def main():
     text = input()

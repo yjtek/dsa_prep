@@ -12,31 +12,48 @@ class Buffer:
         self.finish_time = deque()
 
     def _process(self, request):
-        time_start_processing, time_end_processing = request
+        curr_request_start_time, curr_request_processing_time = request
+        curr_request_end_time = curr_request_start_time+curr_request_processing_time
 
         ## if nothing in queue...
         if not self.finish_time:
             ## add the end of the processing time to finish time
-            self.finish_time.append(time_end_processing)
-            return Response(False, time_start_processing)
+            self.finish_time.append(curr_request_end_time)
+            return Response(False, curr_request_start_time)
             
         ## else if something in queue...
         else:
-            queue_len = len(self.finish_time)
-            if time_start_processing >= self.finish_time[-1]:
-                self.finish_time.popleft()
-                self.finish_time.append(time_end_processing)
-                return Response(False, time_start_processing)
+            ## if the new item starts after the previous item ends
+            if curr_request_start_time >= self.finish_time[-1]:
+                
+                ## Reset deque
+                self.finish_time = deque()
+                self.finish_time.append(curr_request_end_time)
+                return Response(False, curr_request_start_time)
 
-            ## if queue length is max, check if we can process this now
-            if queue_len >= self.size:
-                return Response(True, -1)
+            ## if new item starts before previous item ends
             else:
-                return Response(False, time_start_processing)
+                
+                ## Check start time of new item against the earliest finish time of previous items. If it does not exceed, it means the earliest item is still processing when this item arrives. Else, it means the earliest is already completed, so pop from the queue
+                while curr_request_start_time >= self.finish_time[0]:
+                    self.finish_time.popleft()
 
+                # if the queue is full, the item is dropped
+                if len(self.finish_time) >= self.size:
+                    return Response(True, -1)
+                
+                # otherwise, the item is added to the queue, and the time of processing is delayed by the end time of the last processing end time in the queue
+                else:
+                    last_processing_end_time = self.finish_time[-1]
+                    self.finish_time.append(
+                        last_processing_end_time + curr_request_processing_time
+                    )
+                    return Response(False, last_processing_end_time)
+        
     def process_requests(self, requests):
         responses = []
         for request in requests:
+            # print(self.finish_time)
             response = self._process(request)
             responses.append(response)
         return responses
