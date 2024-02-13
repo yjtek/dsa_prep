@@ -42,6 +42,25 @@ def process_queries(queries):
             result.append(response)
     return result
 
+def process_queries(queries):
+    results = []
+    contacts = {}
+    for query in queries:
+        if query.type == 'add':
+            contacts[query.number] = query.name
+        elif query.type == 'find':
+            if query.number in contacts:
+                results.append(contacts.get(query.number))
+            else:
+                results.append('not found')
+        elif query.type == 'del':
+            if query.number in contacts:
+                del contacts[query.number]
+        else:
+            raise ValueError('Operation must be `add`, `find`, or `del`')
+
+    return results
+
 if __name__ == '__main__':
     write_responses(process_queries(read_queries()))
 
