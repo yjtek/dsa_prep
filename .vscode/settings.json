@@ -1,6 +1,4 @@
 {
-    "python.linting.mypyEnabled": true,
-    "python.linting.enabled": true,
     "files.watcherExclude": {
         "**/target": true
     }
