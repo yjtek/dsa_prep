@@ -42,7 +42,7 @@ class Solver:
         hash1_match = hash1_a == hash1_b
         hash2_match = hash2_a == hash2_b
 
-        return 'Yes' if hash1_match and hash2_match else 'No'
+        return True if hash1_match and hash2_match else False
     
 s = sys.stdin.readline()
 q = int(sys.stdin.readline())

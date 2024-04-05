@@ -59,7 +59,7 @@ def precompute_hash(text, pattern, polynomial = 10, prime = 1e9+7):
     
     return substring_hash_store 
 
-def rabin_karp(text, pattern):
+def rabin_karp(pattern, text):
     '''
     Time complexity: 
         - O(M) for computing pattern hash
