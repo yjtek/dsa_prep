@@ -11,9 +11,9 @@ class Solver:
         self.precompute_hash_1 = self.compute_hash(
             string=s, polynomial=self.polynomial, prime=self.prime1
         )
-        self.precompute_hash_2 = self.compute_hash(
-            string=s, polynomial=self.polynomial, prime=self.prime2
-        )
+        # self.precompute_hash_2 = self.compute_hash(
+        #     string=s, polynomial=self.polynomial, prime=self.prime2
+        # )
 
     def _ask(self, a, b, l):
         return self.s[a:(a+l)] == self.s[b:(b+l)]
@@ -35,7 +35,7 @@ class Solver:
 
     def ask(self, a, b, l):
         polynomial_multiple1 = pow(int(self.polynomial), int(l), int(self.prime1))
-        polynomial_multiple2 = pow(int(self.polynomial), int(l), int(self.prime2))
+        # polynomial_multiple2 = pow(int(self.polynomial), int(l), int(self.prime2))
         
         hash1_a = (
             self.prime1 + 
