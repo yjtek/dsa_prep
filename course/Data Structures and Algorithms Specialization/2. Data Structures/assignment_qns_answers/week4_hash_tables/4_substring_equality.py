@@ -17,13 +17,7 @@ class Solver:
 
     def _ask(self, a, b, l):
         return self.s[a:(a+l)] == self.s[b:(b+l)]
-    
-    def polyhash(self, string, polynomial=10, prime=1e9+7):
-        hashval = 0
-        for char in string[::-1]:
-            hashval += (((polynomial * hashval) % prime) + ord(char)) % prime
-        return hashval
-    
+        
     def compute_hash(self, string, polynomial, prime):
         precompute_substring_hash = [int(0)] * (len(string)+1)
         for i in range(len(string)):
@@ -61,13 +55,7 @@ class Solver:
         #     ((polynomial_multiple2 * self.precompute_hash_2[b]) % self.prime2)
         # ) % self.prime2      
         
-        strings_match = False
-        hash1_match = hash1_a == hash1_b
-        if hash1_match:
-            strings_match = self.s[a:(a+l)] == self.s[b:(b+l)]
-        # hash2_match = hash2_a == hash2_b
-
-        return True if (hash1_match and strings_match) else False
+        return True if ((hash1_a == hash1_b) & (self.s[a:(a+l)] == self.s[b:(b+l)])) else False
     
 s = sys.stdin.readline()
 q = int(sys.stdin.readline())
