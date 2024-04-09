@@ -1,0 +1,4 @@
+- Splay Tree Viz: https://www.cs.usfca.edu/~galles/visualization/SplayTree.html
+- AVL Tree Viz: https://www.cs.usfca.edu/~galles/visualization/SplayTree.html
+- AVL vs Splay Trees: https://stackoverflow.com/questions/7467079/difference-between-avl-trees-and-splay-trees
+- Splay Tree Paper: https://www.cs.cmu.edu/~sleator/papers/self-adjusting.pdf
