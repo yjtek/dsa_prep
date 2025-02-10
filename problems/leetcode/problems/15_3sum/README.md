@@ -36,5 +36,6 @@ Example 3:
 ```
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
         ...
 ```
