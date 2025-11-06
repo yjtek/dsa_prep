@@ -1,19 +1,13 @@
-[tool.poetry]
+[project]
 name = "dsa-prep"
 version = "0.1.0"
-description = ""
-authors = ["yongjian.tek <yongjian.tek@grabtaxi.com>"]
+description = "Add your description here"
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-binarytree = "^6.5.1"
-ipykernel = "^6.29.5"
-networkx = "^3.4.2"
-matplotlib = "^3.9.3"
-scipy = "^1.14.1"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.14"
+dependencies = [
+    "binarytree>=6.5.1",
+    "ipykernel>=7.1.0",
+    "matplotlib>=3.10.7",
+    "networkx>=3.5",
+    "scipy>=1.16.3",
+]
